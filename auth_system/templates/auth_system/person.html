@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Person</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <ul class="topnav">
+        <li class="text-head">Add Person</li>
+      <li><a class="right" href="{% url 'logout' %}">Logout</a></li>
+
+    </ul>
+    
+<div class="parent">
+    <form method="post" id="personForm" data-cources-url="{% url 'ajax_load_cources' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+        {% if messages %}
+       
+        <h2>{{ messages }}</h2>
+       
+        <button style="margin-left: 20px;"><a href="{% url 'dashboard-page' %}">Go To Home</a></button>
+{% endif %}
+    </form>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_department").change(function () {
+        const url = $("#personForm").attr("data-cources-url");  
+        const departmentId = $(this).val();  
+
+        $.ajax({                     
+            url: url,                    
+            data: {
+                'department_id': departmentId       
+            },
+            success: function (data) {   
+                $("#id_cource").html(data); 
+               
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

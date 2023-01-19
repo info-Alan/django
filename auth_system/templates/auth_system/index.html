@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <ul class="topnav">
+        <li class="text-head">School Store</li>
+      <li><a class="right" href="{% url 'login-page' %}">login</a></li>
+      <li><a class="right" href="{% url 'register-page' %}">Register</a></li>
+      <li class="select-class">
+        <select id="department_select">
+        <option value="" selected>Select Department</option>
+        {% for department in departments %}
+        <option value="https://en.wikipedia.org/wiki/{{ department.name }}">{{ department.name }}</option>
+        {% endfor %}
+         
+      </select></li>
+      
+    </ul>
+    
+    <div style="padding:0 16px;">
+      <h2>Welcome to Home Page of School Store</h2>
+      <p>This sample website is for school store.</p>
+      <p>created by django framework.</p>
+      <h4>own design/ refferd: w3schools</h4>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function(){
+          // bind change event to select
+          $('#department_select').on('change', function () {
+              var url = $(this).val(); // get selected value
+              if (url) { // require a URL
+                  window.location = url; // redirect
+              }
+              return false;
+          });
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <ul class="topnav">
+        <li class="text-head">School Store Dashboard</li>
+      <li><a class="right" href="{% url 'logout' %}">Logout</a></li>
+
+      
+    </ul>
+    
+    
+    <h1>Welcome</h1>
+    <button style="margin-left: 20px;"><a href="{% url 'person_add' %}">add</a></button>
+    <button style="margin-left: 20px;"><a href="{% url 'logout' %}">logout</a></button>
+</body>
+</html>
